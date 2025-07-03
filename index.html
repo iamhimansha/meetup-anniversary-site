@@ -81,26 +81,31 @@
 
     /* Love Letter Modal */
     .love-letter {
-  display: none;
+    display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 600px;
- background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white overlay */
-  background-image: url("https://drive.google.com/uc?export=view&id=1INHbxZUwQ_jg_AjC6lztDOs4hfsVTpfb");
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: lighten;
+  height: auto;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  z-index: 10;
+  z-index: 999;
   text-align: left;
   font-size: 1.1em;
   line-height: 1.6;
   color: #222;
+
+  /* Working background setup */
+  background-image: url("https://drive.google.com/uc?export=view&id=1INHbxZUwQ_jg_AjC6lztDOs4hfsVTpfb");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Optional overlay for better text visibility */
+  position: relative;
 }
 
     .love-letter h2 {
