@@ -78,6 +78,49 @@
         opacity: 0;
       }
     }
+
+    /* Love Letter Modal */
+    .love-letter {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 10;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .love-letter h2 {
+      color: #d6336c;
+      margin-top: 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 9;
+    }
   </style>
 </head>
 <body>
@@ -92,8 +135,24 @@
     <button onclick="celebrate()">Celebrate 💖</button>
   </div>
 
+  <div class="overlay" id="overlay" onclick="closeLetter()"></div>
+
+  <div class="love-letter" id="loveLetter">
+    <span class="close-btn" onclick="closeLetter()">×</span>
+    <h2>To My Love 💌</h2>
+    <p>
+      One year ago, we met — and my life hasn't been the same since. ❤️<br><br>
+      Every day with you is a gift, every laugh we share is a treasure, and every hug feels like home. You've shown me a kind of love I never knew was real. <br><br>
+      Thank you for your patience, your kindness, your warmth — and most of all, for being you. <br><br>
+      I can't wait to see what the next chapter brings us. But no matter what, I'm so grateful I get to share it with you. <br><br>
+      Forever yours, <br>
+      💖 Your Love
+    </p>
+  </div>
+
   <script>
     function celebrate() {
+      // Show confetti
       for (let i = 0; i < 100; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
@@ -102,11 +161,17 @@
         confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
         confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
         document.body.appendChild(confetti);
-
         setTimeout(() => confetti.remove(), 6000);
       }
 
-      alert("I love you more every day! 💕");
+      // Show the love letter
+      document.getElementById("loveLetter").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeLetter() {
+      document.getElementById("loveLetter").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
     }
   </script>
 
