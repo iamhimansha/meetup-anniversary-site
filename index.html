@@ -66,6 +66,7 @@
       background-color: pink;
       border-radius: 50%;
       animation: fall 3s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes fall {
@@ -79,31 +80,57 @@
       }
     }
 
-    /* Love Letter Modal */
-  .love-letter {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 600px;
-  background-position: center;
-  background-blend-mode: lighten;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  z-index: 10;
-  text-align: left;
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: #222;
-}
+    .kiss {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 3s ease-out forwards;
+      pointer-events: none;
+    }
 
-}
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) scale(1.5);
+        opacity: 0;
+      }
+    }
 
+    .love-letter {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 600px;
+      min-height: 400px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 10;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #222;
+      background-image: url("https://i.imgur.com/qYg9z1P.jpg"); /* replace with your hosted image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-}
+    .love-letter::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      z-index: -1;
+    }
 
     .love-letter h2 {
       color: #d6336c;
@@ -169,6 +196,19 @@
         confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
         document.body.appendChild(confetti);
         setTimeout(() => confetti.remove(), 6000);
+      }
+
+      // Show kisses
+      for (let i = 0; i < 30; i++) {
+        const kiss = document.createElement('div');
+        kiss.classList.add('kiss');
+        kiss.innerText = '💋';
+        kiss.style.left = Math.random() * 100 + 'vw';
+        kiss.style.top = Math.random() * 80 + 'vh';
+        kiss.style.fontSize = `${20 + Math.random() * 20}px`;
+        kiss.style.animationDuration = `${2 + Math.random() * 2}s`;
+        document.body.appendChild(kiss);
+        setTimeout(() => kiss.remove(), 3000);
       }
 
       // Show the love letter
